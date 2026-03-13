@@ -259,18 +259,45 @@ function Dashboard() {
 
           <h4>Sources</h4>
 
-          <ul>
-            {sources.length === 0
-              ? <li>No sources yet</li>
-              : sources.map((src, i) => (
-                  <li key={i}>{src}</li>
-                ))
-            }
-          </ul>
+          <div className="source-list">
+
+            {sources.length === 0 ? (
+              <p>No sources yet</p>
+            ) : (
+              sources.map((src, i) => (
+
+                <div key={i} className="source-card">
+
+                  <div className="source-title">
+                    📄 {src.doc}
+                  </div>
+
+                  <div className="source-meta">
+                    Page {src.page}
+                  </div>
+
+                  <div className="source-bar">
+                    <div
+                      className="source-fill"
+                      style={{ width: `${src.score * 100}%` }}
+                    />
+                  </div>
+
+                </div>
+
+              ))
+            )}
+
+          </div>
 
           <h4>Confidence</h4>
 
-          <p>{confidence ?? "N/A"}</p>
+          <div className="confidence-bar">
+            <div
+              className="confidence-fill"
+              style={{ width: `${confidence * 100}%` }}
+            />
+          </div>
 
           <h4>Context Preview</h4>
 

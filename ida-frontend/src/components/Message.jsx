@@ -1,4 +1,6 @@
 import Loader from "./Loader";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 function Message({ role, text }) {
 
@@ -20,7 +22,9 @@ function Message({ role, text }) {
           <Loader />
         ) : (
           <>
-            <span>{text}</span>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {text}
+            </ReactMarkdown>
 
             {!isUser && (
               <button
